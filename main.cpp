@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <set>
+#include <list>
 
 int main() {
     int n, m, b, i, vo, vd, p;
@@ -13,6 +14,8 @@ int main() {
         vertices[vo-1].emplace_back(vd-1,p);
     }
 
+    int passos[n];
+    passos[i-1] = 0;
     std::vector<int> peso(n, 1e9);
     peso[i-1] = 0;
 
@@ -29,13 +32,24 @@ int main() {
             fila.erase(fila.find({peso[vd], vd}));
             peso[vd] = peso[vo] + p;
             fila.insert({peso[vd], vd});
+            passos[vd] = vo;
         }
     }
 
-    for (int l = 1; l <= n; l++) {
-        if (l == i) continue;
-        std::cout << l << " (" << peso[l-1] << "): " << i;
-        std::cout << " " << l << std::endl;
+    int v;
+    std::list<int> aux;
+    for (int l = 0; l < n; l++) {
+        if (l == i-1) continue;
+        v = l;
+        std::cout << l+1 << " (" << peso[l] << "): " << i;
+        while (passos[v] != i-1) {
+            aux.emplace_front(passos[v]);
+            v = passos[v];
+        }
+        for (auto passo : aux)
+            std::cout << " " << passo+1;
+        std::cout << " " << l+1 << std::endl;
+        aux.clear();
     }
 
     return 0;
