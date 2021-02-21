@@ -13,27 +13,29 @@ int main() {
         vertices[vo-1].emplace_back(vd-1,p);
     }
 
-    std::vector<int> aux(n, 1e9);
-    aux[i-1] = 0;
+    std::vector<int> peso(n, 1e9);
+    peso[i-1] = 0;
 
     std::set<std::pair<int, int>> fila;
     for (int k = 0; k < n; k++)
-        fila.insert({aux[k], k});
+        fila.insert({peso[k], k});
 
     while (!fila.empty()) {
         auto [d, vo] = *fila.begin();
         fila.erase(fila.begin());
         for (auto &[vd, p] : vertices[vo]) {
-            if (aux[vo] + p >= aux[vd]) continue;
-            fila.erase(fila.find({aux[vd], vd}));
-            aux[vd] = aux[vo] + p;
-            fila.insert({aux[vd], vd});
+            if (peso[vo] + p >= peso[vd])
+                continue;
+            fila.erase(fila.find({peso[vd], vd}));
+            peso[vd] = peso[vo] + p;
+            fila.insert({peso[vd], vd});
         }
     }
 
-    for (int l = 0; l < n; l++) {
-        if (l+1 == i) continue;
-        std::cout << l+1 << " (" << aux[l] << "): " << i << std::endl;
+    for (int l = 1; l <= n; l++) {
+        if (l == i) continue;
+        std::cout << l << " (" << peso[l-1] << "): " << i;
+        std::cout << " " << l << std::endl;
     }
 
     return 0;
