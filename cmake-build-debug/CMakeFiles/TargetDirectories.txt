@@ -1,3 +1,0 @@
-/home/pcarmo/Server/Patrick/Documentos/Universidade/[BCC204] Teoria dos Grafos/Exercicios/Dijkstra/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/pcarmo/Server/Patrick/Documentos/Universidade/[BCC204] Teoria dos Grafos/Exercicios/Dijkstra/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/pcarmo/Server/Patrick/Documentos/Universidade/[BCC204] Teoria dos Grafos/Exercicios/Dijkstra/cmake-build-debug/CMakeFiles/Dijkstra.dir
